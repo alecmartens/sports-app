@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../model/news_model.dart';
+import '../config/config.dart';
 
 class NewsController {
   static const _endpoint = 'https://newsapi.org/v2/top-headlines';
-  static const _apiKey = '718e9661db0a429ebb3ecb9fb549ae47';
+  static const _apiKey = Config.newsApiKey;
 
   Future<List<NewsArticle>> fetchNews() async {
     final url =
