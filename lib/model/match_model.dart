@@ -1,7 +1,8 @@
 import 'country_model.dart';
 import 'league_model.dart';
 import 'match_team_model.dart';
-import 'scores_model.dart';
+import 'team_score_model.dart';
+import 'match_status_model.dart';
 
 class Match {
   final int id;
@@ -15,7 +16,10 @@ class Match {
   final League league;
   final MatchTeam homeTeam;
   final MatchTeam awayTeam;
-  final Scores scores;
+  final TeamScore scores;
+  TeamScore homeScore;
+  TeamScore awayScore;
+  final MatchStatus status;
 
   Match({
     required this.id,
@@ -30,6 +34,9 @@ class Match {
     required this.homeTeam,
     required this.awayTeam,
     required this.scores,
+    required this.homeScore,
+    required this.awayScore,
+    required this.status,
   });
 
   factory Match.fromJson(Map<String, dynamic> json) {
@@ -45,7 +52,10 @@ class Match {
       league: League.fromJson(json['league']),
       homeTeam: MatchTeam.fromJson(json['teams']['home']),
       awayTeam: MatchTeam.fromJson(json['teams']['away']),
-      scores: Scores.fromJson(json['scores']),
+      scores: TeamScore.fromJson(json['scores']),
+      homeScore: TeamScore.fromJson(json['scores']['home']),
+      awayScore: TeamScore.fromJson(json['scores']['away']),
+      status: MatchStatus.fromJson(json['status']),
     );
   }
 }

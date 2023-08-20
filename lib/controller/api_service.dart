@@ -1,42 +1,57 @@
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../enums/sports_league_enum.dart';
+import '../model/match_model.dart';
+import 'package:sports_app/config/config.dart';
+import 'package:sports_app/config/sports_api_config.dart';
+import 'package:intl/intl.dart'; // Add this import at the top
 
 class ApiService {
-  static Future<http.Response> fetchMatches(SportsLeague sportsLeague) async {
-    final String apiKey = '3600678522msh93f2d9232f71c63p11e517jsn853942a57f3e';
-    late final String baseUrl;
+  // final String _apiKey = Config.sportsAppApiKey;
+  final http.Client httpClient;
 
-    switch (sportsLeague) {
-      case SportsLeague.MLB:
-        baseUrl = 'https://api-baseball.p.rapidapi.com/games';
-        break;
-      case SportsLeague.NFL:
-        // baseUrl = 'YOUR_NFL_API_ENDPOINT';
-        break;
-      case SportsLeague.NBA:
-        baseUrl = 'https://api-basketball.p.rapidapi.com/games';
-        break;
-      case SportsLeague.NHL:
-        // baseUrl = 'YOUR_NHL_API_ENDPOINT';
-        break;
+  ApiService({http.Client? client}) : httpClient = client ?? http.Client();
+
+  Future<List<Match>> fetchMatches(
+      SportsLeague sportsLeague, String matchStatus) async {
+    final response = await _fetchRawMatches(sportsLeague);
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      final matches = data['response'];
+
+      if (matches != null && matches is List) {
+        return matches
+            .map<Match>((matchData) => Match.fromJson(matchData))
+            .where((match) {
+          if (matchStatus == 'Live') {
+            return match.statusLong != 'Finished' &&
+                match.statusLong != 'Not Started';
+          } else if (matchStatus == 'Not Started') {
+            return match.statusLong == 'Not Started';
+          } else if (matchStatus == 'Finished') {
+            return match.statusLong == 'Finished';
+          }
+          return false;
+        }).toList();
+      } else {
+        throw Exception('Response data is null or not in expected format');
+      }
+    } else {
+      throw Exception('Failed to fetch matches');
     }
+  }
 
-    final headers = {
-      'x-rapidapi-key': apiKey,
-      'x-rapidapi-host': 'api-baseball.p.rapidapi.com',
-    };
+  Future<http.Response> _fetchRawMatches(SportsLeague sportsLeague) async {
+    print("Using client: $httpClient");
 
-    final Map<String, String> queryParameters = {
-      'season': '2023',
-      'date': '2023-08-15',
-      'league': '1'
-    };
+    SportsApiConfig config = SportsApiConfig.getConfigForLeague(sportsLeague);
 
-    final response = await http.get(
-      Uri.parse(baseUrl).replace(queryParameters: queryParameters),
-      headers: headers,
+    return await http.get(
+      Uri.parse(config.baseUrl)
+          .replace(queryParameters: config.queryParameters),
+      headers: config.headers,
     );
-
-    return response;
   }
 }

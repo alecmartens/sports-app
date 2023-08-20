@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'view/home_page.dart';  // Only if you've separated HomePage into its own file.
-import 'package:flutter/rendering.dart';
 
 
 void main() {
   //Uncomment this to show widget boundaries 
   // debugPaintSizeEnabled = true;
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue, 
       ),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }

@@ -3,9 +3,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../controller/news_controller.dart';
 import '../model/news_model.dart';
-import 'details_page.dart';
+import 'dart:async';
 
 class NewsCarousel extends StatefulWidget {
+  const NewsCarousel({Key? key}) : super(key: key);
+
   @override
   _NewsCarouselState createState() => _NewsCarouselState();
 }
@@ -13,6 +15,7 @@ class NewsCarousel extends StatefulWidget {
 class _NewsCarouselState extends State<NewsCarousel> {
   final NewsController newsController = NewsController();
   late Future<List<NewsArticle>> futureNews;
+  List<NewsArticle> articlesWithImageErrors = [];
 
   @override
   void initState() {
@@ -26,26 +29,29 @@ class _NewsCarouselState extends State<NewsCarousel> {
       future: futureNews,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
+          // Only consider articles that have images and no image load errors
           final validArticles = snapshot.data!
               .where((article) =>
-                  article.urlToImage != null && !article.hasImageError)
-              .toList(); // Convert validArticles to a list
+                  article.urlToImage != null &&
+                  !articlesWithImageErrors.contains(article))
+              .toList();
 
           return CarouselSlider.builder(
             itemCount: validArticles.length,
             itemBuilder: (context, index, realIndex) {
               var article = validArticles.elementAt(index);
+
               return Card(
-                elevation: 10.0,
-                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                elevation: 5.0,
+                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                 color: Colors.blueGrey,
                 child: InkWell(
                   onTap: () => _navigateToUrl(article.url!),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SizedBox(
-                        width: 400.0,
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
                         child: Text(
                           article.title,
                           style: const TextStyle(
@@ -56,42 +62,53 @@ class _NewsCarouselState extends State<NewsCarousel> {
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                       InkWell(
                         onTap: () => _navigateToUrl(article.url!),
-                        child: SizedBox(
-                          width: 500,
-                          height: 200,
-                          child: ClipRect(
-                            child: Image.network(
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Image.network(
                               article.urlToImage!,
-                              fit: BoxFit.cover,
+                              width: 550,
+                              loadingBuilder: (BuildContext context,
+                                  Widget child,
+                                  ImageChunkEvent? loadingProgress) {
+                                if (loadingProgress == null) {
+                                  return child; // Returns the loaded image
+                                }
+                                return const CircularProgressIndicator(); // Returns a loading spinner until the image is loaded
+                              },
                               errorBuilder: (BuildContext context,
                                   Object exception, StackTrace? stackTrace) {
-                                article.hasImageError = true;
-                                return const SizedBox.shrink(); // Hide the image
+                                if (article.imageLoadAttempts >= 2) {
+                                  WidgetsBinding.instance!
+                                      .addPostFrameCallback((_) {
+                                    setState(() {
+                                      articlesWithImageErrors.add(article);
+                                    });
+                                  });
+                                  return Image.asset(
+                                      'assets/images/placeholder.png'); // Return a placeholder image
+                                } else {
+                                  article.imageLoadAttempts++;
+                                  return const CircularProgressIndicator(); // Keep showing the loading spinner
+                                }
                               },
                             ),
-                          ),
+                          ],
                         ),
                       ),
-                      const Padding(padding: EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                      const Padding(padding: EdgeInsets.all(10.0)),
                       Flexible(
-                        child: Container(
-                          width: 500,
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 10), // Add bottom padding
-                            child: Text(
-                              article.description ?? '',
-                              style: const TextStyle(
-                                fontSize: 14.0,
-                                color: Colors.black,
-                              ),
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.center,
-                            ),
+                        child: Text(
+                          article.description ?? '',
+                          style: const TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.black,
                           ),
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ],
@@ -100,11 +117,10 @@ class _NewsCarouselState extends State<NewsCarousel> {
               );
             },
             options: CarouselOptions(
-              enlargeCenterPage: true,
               height: 435,
               autoPlay: true,
-              autoPlayAnimationDuration: Duration(seconds: 2), // Adjust this duration
-              autoPlayInterval: Duration(seconds: 10), // Adjust this interval
+              autoPlayAnimationDuration: const Duration(seconds: 2),
+              autoPlayInterval: const Duration(seconds: 10),
               viewportFraction: 0.45,
             ),
           );
