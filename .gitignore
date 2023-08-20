@@ -1,3 +1,7 @@
+#My Ignores
+lib\config\config.dart
+config.dart
+
 # Miscellaneous
 *.class
 *.log
