@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../model/match_model.dart';
-import '../enums/sports_league_enum.dart';
+import '../../model/match_model.dart';
+import '../../enums/sports_league_enum.dart';
 import 'matches_utils.dart';
 
 class MatchCard extends StatelessWidget {

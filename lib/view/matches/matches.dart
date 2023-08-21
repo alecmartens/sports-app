@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../enums/sports_league_enum.dart';
-import '../controller/api_service.dart';
+import '../../enums/sports_league_enum.dart';
+import '../../controller/api_service.dart';
 import 'match_card.dart';
-import '../model/match_model.dart';
+import '../../model/match_model.dart';
 import 'package:intl/intl.dart';
 import 'matches_utils.dart';
 
