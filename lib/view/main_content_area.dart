@@ -20,16 +20,15 @@ class MainContentArea extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Matches(sportsLeague: SportsLeague.MLB, matchStatus: "Live"),
-                  // // Matches(sportsLeague: SportsLeague.NBA, matchStatus: "Live"),
-                  // SizedBox(height: 20), // Gives some spacing between the sections
                   Matches(
                       sportsLeague: SportsLeague.MLB,
                       matchStatus: "Not Started"),
                   Matches(
                       sportsLeague: SportsLeague.MLB, matchStatus: "Finished"),
-                  // Matches(
-                  //     sportsLeague: SportsLeague.NBA,
-                  //     matchStatus: "Not Started"),
+                  Matches(
+                      sportsLeague: SportsLeague.NBA,
+                      matchStatus: "Not Started"),
+                  Matches(sportsLeague: SportsLeague.NBA, matchStatus: "Live"),
                 ],
               ),
             )

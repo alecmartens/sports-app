@@ -40,22 +40,26 @@ class Match {
   });
 
   factory Match.fromJson(Map<String, dynamic> json) {
+    int getId(dynamic value) => value is int ? value : 0;
+    String getString(dynamic value) => value is String ? value : '';
+    int getTimestamp(dynamic value) => value is int ? value : 0;
+
     return Match(
-      id: json['id'] ?? 0,
-      date: json['date'] ?? '',
-      time: json['time'] ?? '',
-      timestamp: json['timestamp'] ?? 0,
-      timezone: json['timezone'] ?? '',
-      statusLong: json['status']['long'] ?? '',
-      statusShort: json['status']['short'] ?? '',
-      country: Country.fromJson(json['country']),
-      league: League.fromJson(json['league']),
-      homeTeam: MatchTeam.fromJson(json['teams']['home']),
-      awayTeam: MatchTeam.fromJson(json['teams']['away']),
-      scores: TeamScore.fromJson(json['scores']),
-      homeScore: TeamScore.fromJson(json['scores']['home']),
-      awayScore: TeamScore.fromJson(json['scores']['away']),
-      status: MatchStatus.fromJson(json['status']),
+      id: getId(json['id']),
+      date: getString(json['date']),
+      time: getString(json['time']),
+      timestamp: getTimestamp(json['timestamp']),
+      timezone: getString(json['timezone']),
+      statusLong: getString(json['status']?['long']),
+      statusShort: getString(json['status']?['short']),
+      country: Country.fromJson(json['country'] ?? {}),
+      league: League.fromJson(json['league'] ?? {}),
+      homeTeam: MatchTeam.fromJson(json['teams']?['home'] ?? {}),
+      awayTeam: MatchTeam.fromJson(json['teams']?['away'] ?? {}),
+      scores: TeamScore.fromJson(json['scores'] ?? {}),
+      homeScore: TeamScore.fromJson(json['scores']?['home'] ?? {}),
+      awayScore: TeamScore.fromJson(json['scores']?['away'] ?? {}),
+      status: MatchStatus.fromJson(json['status'] ?? {}),
     );
   }
 }

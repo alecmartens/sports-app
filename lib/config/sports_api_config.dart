@@ -36,8 +36,8 @@ class SportsApiConfig {
         _host = 'api-basketball.p.rapidapi.com';
         _queryParameters = {
           'league': '12',
-          'season': '2023',
-          'date': '2023-12-25'
+          'season': '2023-2024',
+          // 'date': '2023-12-25'
         };
         break;
       default:
