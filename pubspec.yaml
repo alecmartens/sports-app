@@ -71,6 +71,8 @@ flutter:
   assets:
     - assets/mlb_teams/
     - assets/images/logos/small_monke.png
+    - assets/images/
+    - assets/images/logos/big_monke.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

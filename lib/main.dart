@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'view/home_page.dart';  // Only if you've separated HomePage into its own file.
+import 'view/login_page.dart';
 
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue, 
       ),
-      home: const HomePage(),
+      home: LoginPage(),
     );
   }
 }
