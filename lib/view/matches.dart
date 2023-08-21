@@ -10,14 +10,16 @@ class Matches extends StatefulWidget {
   final SportsLeague sportsLeague;
   final String matchStatus;
 
-  const Matches({Key? key, required this.sportsLeague, required this.matchStatus}) : super(key: key);
+  const Matches(
+      {Key? key, required this.sportsLeague, required this.matchStatus})
+      : super(key: key);
 
   @override
   _MatchesState createState() => _MatchesState();
 }
 
 class _MatchesState extends State<Matches> {
-  late List<Match> matchesList = []; 
+  late List<Match> matchesList = [];
 
   @override
   void initState() {
@@ -27,7 +29,8 @@ class _MatchesState extends State<Matches> {
 
   Future<void> _loadMatches() async {
     try {
-      matchesList = await ApiService().fetchMatches(widget.sportsLeague, widget.matchStatus);
+      matchesList = await ApiService()
+          .fetchMatches(widget.sportsLeague, widget.matchStatus);
       setState(() {});
     } catch (e) {
       print('Error fetching matches: $e');
@@ -50,6 +53,11 @@ class _MatchesState extends State<Matches> {
       emptyMessage = 'No Finished Games';
     }
 
+    if (matchesList.isEmpty) {// && widget.matchStatus == 'Live') {
+      // Return an empty Container if there are no live matches
+      return Container();
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -65,8 +73,7 @@ class _MatchesState extends State<Matches> {
             ),
           ),
         ),
-        _buildMatchesWidget(
-            emptyMessage), // Pass emptyMessage to the Matches widget
+        _buildMatchesWidget(emptyMessage),
       ],
     );
   }

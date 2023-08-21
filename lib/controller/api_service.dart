@@ -15,6 +15,7 @@ class ApiService {
   Future<List<Match>> fetchMatches(
       SportsLeague sportsLeague, String matchStatus) async {
     final response = await _fetchRawMatches(sportsLeague);
+    if (sportsLeague == SportsLeague.NBA)
     print(response.body);
 
     if (response.statusCode == 200) {

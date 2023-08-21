@@ -13,10 +13,20 @@ class Country {
 
   factory Country.fromJson(Map<String, dynamic> json) {
     return Country(
-      id: json['id'] ?? 0,
+      id: _getIdFromJson(json['id']),
       name: json['name'] ?? '',
       code: json['code'] ?? '',
       flag: json['flag'] ?? '',
     );
+  }
+
+  static int _getIdFromJson(dynamic value) {
+    if (value is int) {
+      return value;
+    } else if (value is String) {
+      return int.tryParse(value) ?? 0;
+    } else {
+      return 0;
+    }
   }
 }
