@@ -1,6 +1,6 @@
 # Sports App
 
-![App Logo](path_to_your_app_logo.png) 
+![App Logo](https://github.com/alecmartens/sports-app/blob/master/assets/images/logos/Screenshot%202023-08-20%20202354.png?raw=true) 
 
 ## Introduction
 Welcome to **Sports App** - your ultimate sports companion. Whether you're keeping up with your favorite baseball team's latest match or curious about basketball season scores, our app ensures you're always up-to-date.
