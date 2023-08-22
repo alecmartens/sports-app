@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "1045437845196-7meg2uocknsl0d4hi6ta244uapkcpnfn.apps.googleusercontent.com",
+          "client_id": "1045437845196-ph2lcq1okga144cepr6oul90luh1ef4s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -29,6 +29,13 @@
             {
               "client_id": "1045437845196-7meg2uocknsl0d4hi6ta244uapkcpnfn.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1045437845196-sauu93o4cafmgtcabla2216uvco9qaf3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sportsApp"
+              }
             }
           ]
         }

@@ -2,9 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../enums/sports_league_enum.dart';
 import '../model/match_model.dart';
-import 'package:sports_app/config/config.dart';
 import 'package:sports_app/config/sports_api_config.dart';
-import 'package:intl/intl.dart'; // Add this import at the top
+// Add this import at the top
 
 class ApiService {
   // final String _apiKey = Config.sportsAppApiKey;
@@ -15,8 +14,9 @@ class ApiService {
   Future<List<Match>> fetchMatches(
       SportsLeague sportsLeague, String matchStatus) async {
     final response = await _fetchRawMatches(sportsLeague);
-    if (sportsLeague == SportsLeague.NBA)
-    print(response.body);
+    if (sportsLeague == SportsLeague.NBA) {
+      print(response.body);
+    }
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);

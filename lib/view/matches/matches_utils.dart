@@ -4,10 +4,8 @@ import '../../model/match_model.dart';
 
 class MatchUtils {
   static String getCurrentSegment(SportsLeague sportsLeague, Match match) {
-  if (match.status != null) {
-    if (match.status.long.startsWith("Inning") || match.status.long == "Postponed") {
-      return match.status.long;
-    }
+  if (match.status.long.startsWith("Inning") || match.status.long == "Postponed") {
+    return match.status.long;
   }
   
   if (sportsLeague == SportsLeague.MLB) {

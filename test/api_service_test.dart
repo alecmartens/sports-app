@@ -5,7 +5,6 @@ import 'dart:convert';
 import 'package:sports_app/controller/api_service.dart';
 import 'package:sports_app/enums/sports_league_enum.dart';
 import './mocks.mocks.dart'; // <-- Make sure to adjust the path
-import 'package:sports_app/config/config.dart';
 
 void main() {
   group('ApiService', () {

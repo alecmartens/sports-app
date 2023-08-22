@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
-import 'view/home_page.dart';  // Only if you've separated HomePage into its own file.
+// Only if you've separated HomePage into its own file.
 import 'view/login_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 
-void main() {
+
+Future<void> main() async {
   //Uncomment this to show widget boundaries 
   // debugPaintSizeEnabled = true;
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -20,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue, 
       ),
-      home: LoginPage(),
+      home: const LoginPage(),
     );
   }
 }

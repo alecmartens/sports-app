@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -25,13 +27,13 @@ class _LoginPageState extends State<LoginPage> {
                 'assets/images/logos/big_monke.png',  // Change to your logo's path
                 height: 150.0,
               ),
-              SizedBox(height: 50.0),
+              const SizedBox(height: 50.0),
               Form(
                 key: _formKey,
                 child: Column(
                   children: [
                     TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Email',
                         border: OutlineInputBorder(),
                       ),
@@ -45,9 +47,9 @@ class _LoginPageState extends State<LoginPage> {
                         _email = value;
                       },
                     ),
-                    SizedBox(height: 20.0),
+                    const SizedBox(height: 20.0),
                     TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Password',
                         border: OutlineInputBorder(),
                       ),
@@ -62,18 +64,17 @@ class _LoginPageState extends State<LoginPage> {
                         _password = value;
                       },
                     ),
-                    SizedBox(height: 20.0),
+                    const SizedBox(height: 20.0),
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState?.validate() == true) {
                           // Handle login here
                         }
                       },
-                      child: Text('Login'),
+                      child: const Text('Login'),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.lightBlue, // Your app's primary color
-                        onPrimary: Colors.white,
-                        padding: EdgeInsets.symmetric(vertical: 12.0),
+                        foregroundColor: Colors.white, backgroundColor: Colors.lightBlue,
+                        padding: const EdgeInsets.symmetric(vertical: 12.0),
                       ),
                     ),
                   ],
