@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'view/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'view/root_page.dart';
 
 
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue, 
       ),
-      home: const LoginPage(),
+      home: RootPage(),
     );
   }
 }
