@@ -64,11 +64,6 @@ class _LoginFormFieldState extends State<LoginFormField> {
               ? widget.onLoginPressed
               : widget.onSignupPressed,
           child: Text(widget.isLoginMode ? 'Login' : 'Signup'),
-          style: ElevatedButton.styleFrom(
-            foregroundColor: Colors.white,
-            backgroundColor: Colors.lightBlue,
-            padding: const EdgeInsets.symmetric(vertical: 12.0),
-          ),
         ),
         TextButton(
           onPressed: widget.toggleLoginMode,

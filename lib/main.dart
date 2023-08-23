@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'view/root_page.dart';
+import 'themes/app_theme.dart';
 
 
 
@@ -24,9 +25,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Alec\'s Sports App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue, 
-      ),
+      theme: appThemeData,
       home: const RootPage(),
     );
   }
