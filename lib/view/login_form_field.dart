@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'form_validation.dart';
+import 'email_input_field.dart';
+import 'password_input_field.dart';
 
 class LoginFormField extends StatefulWidget {
   final Function(String) onEmailChanged;
@@ -32,33 +34,19 @@ class LoginFormField extends StatefulWidget {
 }
 
 class _LoginFormFieldState extends State<LoginFormField> {
+  bool _isPasswordVisible = false; // Track the password visibility state
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextFormField(
-          initialValue: widget.rememberEmail ? widget.initialEmail : '',
-          decoration: const InputDecoration(
-            labelText: 'Email',
-            border: OutlineInputBorder(),
-          ),
-          validator: FormValidation.validateEmail,
-          onChanged: widget.onEmailChanged,
+        EmailInputField(
+          rememberEmail: widget.rememberEmail,
+          initialEmail: widget.initialEmail,
+          onEmailChanged: widget.onEmailChanged,
         ),
         const SizedBox(height: 20.0),
-        TextFormField(
-          decoration: InputDecoration(
-            labelText: 'Password',
-            border: OutlineInputBorder(),
-            suffixIcon: IconButton(
-              icon: Icon(
-                widget.isObscureText ? Icons.visibility_off : Icons.visibility,
-              ),
-              onPressed: () => widget.onRememberEmailChanged(!widget.isObscureText),
-            ),
-          ),
-          obscureText: widget.isObscureText,
-          validator: FormValidation.validatePassword,
+        PasswordInputField(
           onChanged: widget.onPasswordChanged,
         ),
         Row(
@@ -72,7 +60,9 @@ class _LoginFormFieldState extends State<LoginFormField> {
         ),
         const SizedBox(height: 20.0),
         ElevatedButton(
-          onPressed: widget.isLoginMode ? widget.onLoginPressed : widget.onSignupPressed,
+          onPressed: widget.isLoginMode
+              ? widget.onLoginPressed
+              : widget.onSignupPressed,
           child: Text(widget.isLoginMode ? 'Login' : 'Signup'),
           style: ElevatedButton.styleFrom(
             foregroundColor: Colors.white,

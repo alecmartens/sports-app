@@ -21,38 +21,6 @@ class _LoginPageState extends State<LoginPage> {
   bool _isObscureText = true;
   bool _rememberEmail = false;
 
-  // // 1. Separate UI elements
-  // Widget _buildEmailField() {
-  //   return TextFormField(
-  //     initialValue: _rememberEmail ? _email : '',
-  //     decoration: const InputDecoration(
-  //       labelText: 'Email',
-  //       border: OutlineInputBorder(),
-  //     ),
-  //     validator: FormValidation.validateEmail,
-  //     onChanged: (value) => _email = value,
-  //   );
-  // }
-
-  // Widget _buildPasswordField() {
-  //   return TextFormField(
-  //     decoration: InputDecoration(
-  //       labelText: 'Password',
-  //       border: OutlineInputBorder(),
-  //       suffixIcon: IconButton(
-  //         icon: Icon(
-  //           _isObscureText ? Icons.visibility_off : Icons.visibility,
-  //         ),
-  //         onPressed: _togglePasswordVisibility,
-  //       ),
-  //     ),
-  //     obscureText: _isObscureText,
-  //     validator: FormValidation.validatePassword,
-  //     onChanged: (value) => _password = value,
-  //   );
-  // }
-
-  // 2. Separate methods for event handlers
   void _toggleLoginMode() {
     setState(() => _isLoginMode = !_isLoginMode);
   }
