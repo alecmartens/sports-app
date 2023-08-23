@@ -31,7 +31,7 @@ PreferredSizeWidget topAppBar(BuildContext context) {
       ),
     ),
     leading: IconButton(
-      icon: const Icon(Icons.menu, color: Colors.lightBlue),
+      icon: const Icon(Icons.menu),
       onPressed: () {},
     ),
     actions: [

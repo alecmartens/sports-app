@@ -30,13 +30,13 @@ final ThemeData appThemeData = ThemeData(
   // Styles for OutlinedButton
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      foregroundColor: Colors.lightBlue,
-      side: BorderSide(color: Colors.lightBlue),
+      foregroundColor: Colors.black,
+      side: BorderSide(color: Colors.black),
     ),
   ),
 
   iconTheme: const IconThemeData(
-    color: Colors.black, // define the color for your icons
+    color: Colors.black, // define the color for your   s
     size: 24.0, // define the default size
   ),
 );

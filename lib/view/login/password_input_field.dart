@@ -23,10 +23,10 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
         labelText: 'Password',
         border: OutlineInputBorder(),
         suffixIcon: IconButton(
+          color: Colors.black, // Explicitly set the color for IconButton
           icon: Icon(
-            _isPasswordVisible
-                ? Icons.visibility
-                : Icons.visibility_off,
+            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+            color: Colors.black, // Explicitly set the icon color here
           ),
           onPressed: () {
             setState(() {
