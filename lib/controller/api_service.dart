@@ -45,7 +45,7 @@ class ApiService {
   }
 
   Future<http.Response> _fetchRawMatches(SportsLeague sportsLeague) async {
-    print("Using client: $httpClient");
+    // print("Using client: $httpClient");
 
     SportsApiConfig config = SportsApiConfig.getConfigForLeague(sportsLeague);
 

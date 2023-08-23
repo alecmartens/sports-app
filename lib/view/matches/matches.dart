@@ -32,7 +32,7 @@ class _MatchesState extends State<Matches> {
           .fetchMatches(widget.sportsLeague, widget.matchStatus);
       setState(() {});
     } catch (e) {
-      print('Error fetching matches: $e');
+      // print('Error fetching matches: $e');
     }
   }
 
