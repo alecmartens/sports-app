@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'form_validation.dart';
 import 'email_input_field.dart';
 import 'password_input_field.dart';
 
@@ -34,7 +33,8 @@ class LoginFormField extends StatefulWidget {
 }
 
 class _LoginFormFieldState extends State<LoginFormField> {
-  bool _isPasswordVisible = false; // Track the password visibility state
+  final bool _isPasswordVisible = false; // Track the password visibility state
+  String _currentEmail = ''; // To store the current email input
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,10 @@ class _LoginFormFieldState extends State<LoginFormField> {
         EmailInputField(
           rememberEmail: widget.rememberEmail,
           initialEmail: widget.initialEmail,
-          onEmailChanged: widget.onEmailChanged,
+          onEmailChanged: (email) {
+            _currentEmail = email;
+            widget.onEmailChanged(email);
+          },
         ),
         const SizedBox(height: 20.0),
         PasswordInputField(
@@ -53,9 +56,17 @@ class _LoginFormFieldState extends State<LoginFormField> {
           children: [
             Checkbox(
               value: widget.rememberEmail,
-              onChanged: (newValue) => widget.onRememberEmailChanged(newValue!),
+              onChanged: (newValue) {
+                if (newValue!) {
+                  // If the checkbox is checked, remember the current email input
+                  widget.onRememberEmailChanged(true);
+                  widget.onEmailChanged(_currentEmail);
+                } else {
+                  widget.onRememberEmailChanged(false);
+                }
+              },
             ),
-            Text("Remember Email")
+            const Text("Remember Email")
           ],
         ),
         const SizedBox(height: 20.0),

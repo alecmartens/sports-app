@@ -21,7 +21,7 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
     return TextFormField(
       decoration: InputDecoration(
         labelText: 'Password',
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
         suffixIcon: IconButton(
           color: Colors.black, // Explicitly set the color for IconButton
           icon: Icon(

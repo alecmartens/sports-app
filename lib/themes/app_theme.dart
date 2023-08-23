@@ -31,7 +31,7 @@ final ThemeData appThemeData = ThemeData(
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
       foregroundColor: Colors.black,
-      side: BorderSide(color: Colors.black),
+      side: const BorderSide(color: Colors.black),
     ),
   ),
 
