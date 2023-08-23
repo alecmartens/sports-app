@@ -4,6 +4,8 @@ import 'login_page.dart';
 import 'home_page.dart';
 
 class RootPage extends StatefulWidget {
+  const RootPage({Key? key}) : super(key: key);
+
   @override
   _RootPageState createState() => _RootPageState();
 }
@@ -19,11 +21,11 @@ class _RootPageState extends State<RootPage> {
         if (snapshot.connectionState == ConnectionState.active) {
           final User? user = snapshot.data;
           if (user == null) {
-            return LoginPage();
+            return const LoginPage();
           }
-          return HomePage();  // Replace with your HomePage widget
+          return const HomePage();  // Replace with your HomePage widget
         }
-        return CircularProgressIndicator();  // Return a loading widget while waiting for the stream
+        return const CircularProgressIndicator();  // Return a loading widget while waiting for the stream
       },
     );
   }

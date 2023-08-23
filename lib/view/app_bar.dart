@@ -41,7 +41,7 @@ PreferredSizeWidget topAppBar(BuildContext context) {
             FirebaseAuth.instance.signOut();
             // Optionally, navigate to another page after logging out.
             Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (BuildContext context) => LoginPage(),
+              builder: (BuildContext context) => const LoginPage(),
             ));
           }
         },
