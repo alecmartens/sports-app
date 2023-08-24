@@ -81,8 +81,7 @@ class _NewsCarouselState extends State<NewsCarousel> {
                               errorBuilder: (BuildContext context,
                                   Object exception, StackTrace? stackTrace) {
                                 if (article.imageLoadAttempts >= 2) {
-                                  WidgetsBinding.instance!
-                                      .addPostFrameCallback((_) {
+                                  WidgetsBinding.instance.addPostFrameCallback((_) {
                                     setState(() {
                                       articlesWithImageErrors.add(article);
                                     });

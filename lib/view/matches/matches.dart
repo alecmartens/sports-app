@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import '../enums/sports_league_enum.dart';
-import '../controller/api_service.dart';
+import '../../enums/sports_league_enum.dart';
+import '../../controller/api_service.dart';
 import 'match_card.dart';
-import '../model/match_model.dart';
-import 'package:intl/intl.dart';
+import '../../model/match_model.dart';
 import 'matches_utils.dart';
 
 class Matches extends StatefulWidget {
@@ -33,7 +32,7 @@ class _MatchesState extends State<Matches> {
           .fetchMatches(widget.sportsLeague, widget.matchStatus);
       setState(() {});
     } catch (e) {
-      print('Error fetching matches: $e');
+      // print('Error fetching matches: $e');
     }
   }
 
