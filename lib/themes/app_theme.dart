@@ -15,7 +15,7 @@ final ThemeData appThemeData = ThemeData(
   primaryColor: primaryColor,
   scaffoldBackgroundColor: softGreyBackground, 
 
-  colorScheme: ColorScheme.light(
+  colorScheme: const ColorScheme.light(
     primary: primaryColor,
     secondary: secondaryColor, // this replaces the old accentColor
     error: errorColor,
@@ -55,17 +55,17 @@ final ThemeData appThemeData = ThemeData(
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
       foregroundColor: primaryColor,
-      side: BorderSide(color: primaryColor),
+      side: const BorderSide(color: primaryColor),
     ),
   ),
 
-  iconTheme: IconThemeData(
+  iconTheme: const IconThemeData(
     color: primaryColor, // use primary color for icons
     size: 24.0,
   ),
 
   // Styles for TextField
-  inputDecorationTheme: InputDecorationTheme(
+  inputDecorationTheme: const InputDecorationTheme(
     labelStyle: TextStyle(
       color: darkGreyText, // use dark gray for the label text in light theme
     ),
@@ -86,8 +86,8 @@ final ThemeData appThemeData = ThemeData(
   ),
 
   // Add text themes
-  textTheme: TextTheme(
-    bodyText1: TextStyle(color: lightGreyText), // for light theme
-    bodyText2: TextStyle(color: darkGreyText), // for dark theme
+  textTheme: const TextTheme(
+    bodyLarge: TextStyle(color: lightGreyText), // for light theme
+    bodyMedium: TextStyle(color: darkGreyText), // for dark theme
   ),
 );

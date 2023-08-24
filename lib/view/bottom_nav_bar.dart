@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
+  const BottomNavBar({Key? key}) : super(key: key);
+
   @override
   _BottomNavBarState createState() => _BottomNavBarState();
 }
@@ -17,7 +19,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           _currentIndex = index;
         });
       },
-      items: [
+      items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home), // Use SvgPicture.asset for SVG icons
           label: 'Hub',
