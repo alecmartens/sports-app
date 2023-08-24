@@ -108,14 +108,15 @@ class _Dropdown_MenuState extends State<Dropdown_Menu> {
         favoritedTeams = favorites;
       });
     } catch (e) {
-      Fluttertoast.showToast(
-        msg: "Unable to fetch favorites",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
+      // await Future.delayed(Duration(seconds: 5));  // Wait for 5 seconds
+      // Fluttertoast.showToast(
+      //   msg: "Unable to fetch favorites",
+      //   toastLength: Toast.LENGTH_SHORT,
+      //   gravity: ToastGravity.BOTTOM,
+      //   backgroundColor: Colors.red,
+      //   textColor: Colors.white,
+      //   fontSize: 16.0,
+      // );
     }
   }
 

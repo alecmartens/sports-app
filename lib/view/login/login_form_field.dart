@@ -3,7 +3,6 @@ import 'email_input_field.dart';
 import 'password_input_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 class LoginFormField extends StatefulWidget {
   final Function(String) onEmailChanged;
   final Function(String) onPasswordChanged;
@@ -73,7 +72,7 @@ class _LoginFormFieldState extends State<LoginFormField> {
   void initState() {
     super.initState();
     if (widget.rememberEmail) {
-      _loadStoredEmail();
+      WidgetsBinding.instance.addPostFrameCallback((_) => _loadStoredEmail());
     }
   }
 
@@ -104,18 +103,18 @@ class _LoginFormFieldState extends State<LoginFormField> {
         ),
         // Row(
         //   children: [
-            // Checkbox(
-            //   value: widget.rememberEmail,
-            //   onChanged: (newValue) {
-            //     if (newValue!) {
-            //       widget.onRememberEmailChanged(true);
-            //       _loadStoredEmail(); // Ensure you reload the email if checkbox is checked
-            //     } else {
-            //       widget.onRememberEmailChanged(false);
-            //     }
-            //   },
-            // ),
-            // const Text("Remember Email")
+        // Checkbox(
+        //   value: widget.rememberEmail,
+        //   onChanged: (newValue) {
+        //     if (newValue!) {
+        //       widget.onRememberEmailChanged(true);
+        //       _loadStoredEmail(); // Ensure you reload the email if checkbox is checked
+        //     } else {
+        //       widget.onRememberEmailChanged(false);
+        //     }
+        //   },
+        // ),
+        // const Text("Remember Email")
         //   ],
         // ),
         const SizedBox(height: 20.0),
@@ -140,9 +139,9 @@ class _LoginFormFieldState extends State<LoginFormField> {
           onPressed: widget.toggleLoginMode,
           child: Text(
             widget.isLoginMode
-              ? 'Don\'t have an account? Sign up'
-              : 'Already have an account? Login',
-              ),
+                ? 'Don\'t have an account? Sign up'
+                : 'Already have an account? Login',
+          ),
         ),
       ],
     );

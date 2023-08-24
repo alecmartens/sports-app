@@ -23,7 +23,7 @@ PreferredSizeWidget topAppBar(BuildContext context) {
             // Inner row for image and text
             children: [
               Image.asset(
-                'assets/images/logos/small_monke.png',
+                'assets/images/logos/logo_small_light_mode.png',
                 fit: BoxFit.contain,
                 height: 32, // You can adjust the size as needed.
               ),
