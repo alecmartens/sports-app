@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'email_input_field.dart';
 import 'password_input_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 
 
 class LoginFormField extends StatefulWidget {
@@ -136,7 +135,7 @@ class _LoginFormFieldState extends State<LoginFormField> {
           },
           child: Text(widget.isLoginMode ? 'Login' : 'Sign Up'),
         ),
-        SizedBox(height: 10.0),
+        const SizedBox(height: 10.0),
         TextButton(
           onPressed: widget.toggleLoginMode,
           child: Text(
