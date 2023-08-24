@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 // Import Firestore
 import '../model/team_model.dart';
-import 'favorite_team_dialog.dart';
+import 'favorites/favorite_team_dialog.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../controller/favorites_service.dart';
 
@@ -109,34 +109,42 @@ class _Dropdown_MenuState extends State<Dropdown_Menu> {
       });
     } catch (e) {
       Fluttertoast.showToast(
-          msg: "Unable to fetch favorites",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
+        msg: "Unable to fetch favorites",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.menu),
-      onPressed: () {
-        final RenderBox overlay =
-            Overlay.of(context).context.findRenderObject() as RenderBox;
-        final Offset overlayPosition = overlay.localToGlobal(Offset.zero);
-        final Offset position = (context.findRenderObject() as RenderBox)
-            .localToGlobal(Offset.zero);
-        final Offset offset = Offset(
-          position.dx - overlayPosition.dx,
-          position.dy -
-              overlayPosition.dy +
-              (context.findRenderObject() as RenderBox).size.height,
-        );
-        _showMenu(context, offset);
-      },
+    return Container(
+      child: InkWell(
+        onTap: () {
+          final RenderBox overlay =
+              Overlay.of(context).context.findRenderObject() as RenderBox;
+          final Offset overlayPosition = overlay.localToGlobal(Offset.zero);
+          final Offset position = (context.findRenderObject() as RenderBox)
+              .localToGlobal(Offset.zero);
+          final Offset offset = Offset(
+            position.dx - overlayPosition.dx,
+            position.dy -
+                overlayPosition.dy +
+                (context.findRenderObject() as RenderBox).size.height,
+          );
+          _showMenu(context, offset);
+        },
+        child: const Row(
+          // mainAxisSize: MainAxisSize.min, // keep the row's size to its content
+          children: [
+            SizedBox(width: 8), // Add a little spacing between text and icon
+            Icon(Icons.menu),
+          ],
+        ),
+      ),
     );
   }
 }
