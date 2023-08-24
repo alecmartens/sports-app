@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'login/login_page.dart';
+import 'dropdown_menu.dart';
 
 PreferredSizeWidget topAppBar(BuildContext context) {
   return AppBar(
@@ -30,10 +31,7 @@ PreferredSizeWidget topAppBar(BuildContext context) {
         color: Colors.black,
       ),
     ),
-    leading: IconButton(
-      icon: const Icon(Icons.menu),
-      onPressed: () {},
-    ),
+    leading: const Dropdown_Menu(),
     actions: [
       PopupMenuButton<String>(
         onSelected: (String result) {
@@ -61,10 +59,6 @@ PreferredSizeWidget topAppBar(BuildContext context) {
         ),
       ),
       const SizedBox(width: 10),
-      // IconButton(
-      //   icon: const Icon(Icons.notifications, color: Colors.lightBlue),
-      //   onPressed: () {},
-      // ),
     ],
   );
 }
