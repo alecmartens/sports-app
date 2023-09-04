@@ -23,7 +23,7 @@ class SportsApiConfig {
 
     switch (sportsLeague) {
       case SportsLeague.MLB: //TODO: remov \ 
-        _baseUrl = 'https://api-baseball.p.rapidapi.com/games111';
+        _baseUrl = 'https://api-baseball.p.rapidapi.com/games';
         _host = 'api-baseball.p.rapidapi.com';
         _queryParameters = {
           'season': '2023',
@@ -32,7 +32,7 @@ class SportsApiConfig {
         };
         break;
       case SportsLeague.NBA:
-        _baseUrl = 'https://api-basketball.p.rapidapi.com/games111';
+        _baseUrl = 'https://api-basketball.p.rapidapi.com/games';
         _host = 'api-basketball.p.rapidapi.com';
         _queryParameters = {
           'league': '12',

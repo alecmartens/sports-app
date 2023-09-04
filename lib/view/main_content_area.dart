@@ -25,10 +25,10 @@ class MainContentArea extends StatelessWidget {
                       matchStatus: "Not Started"),
                   Matches(
                       sportsLeague: SportsLeague.MLB, matchStatus: "Finished"),
-                  Matches(
-                      sportsLeague: SportsLeague.NBA,
-                      matchStatus: "Not Started"),
-                  Matches(sportsLeague: SportsLeague.NBA, matchStatus: "Live"),
+                  // Matches(
+                  //     sportsLeague: SportsLeague.NBA,
+                  //     matchStatus: "Not Started"),
+                  // Matches(sportsLeague: SportsLeague.NBA, matchStatus: "Live"),
                 ],
               ),
             )

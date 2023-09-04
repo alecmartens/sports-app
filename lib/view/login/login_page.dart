@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../controller/auth_service.dart';
 import 'login_form_field.dart';
+import 'package:flutter/services.dart'; // to handle potential platform exceptions
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -17,6 +19,8 @@ class _LoginPageState extends State<LoginPage> {
   final AuthService _authService = AuthService();
   String _userId = '';
   StreamSubscription<User?>? _authStateSubscription;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
 
   String _email = '';
   String _password = '';
@@ -92,6 +96,49 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  Future<User?> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await googleSignIn.signIn();
+      if (googleSignInAccount != null) {
+        final GoogleSignInAuthentication googleSignInAuthentication =
+            await googleSignInAccount.authentication;
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleSignInAuthentication.accessToken,
+          idToken: googleSignInAuthentication.idToken,
+        );
+        final UserCredential authResult =
+            await _auth.signInWithCredential(credential);
+        final User? user = authResult.user;
+        return user;
+      }
+    } catch (error) {
+      print(error);
+      return null;
+    }
+  }
+
+  Future<void> _signInWithGoogle() async {
+    try {
+      final user = await signInWithGoogle();
+      if (user != null) {
+        Navigator.of(context).pushReplacementNamed(
+            '/home'); // Assuming '/home' is the route for your Home page
+      } else {
+        // Handle the sign-in failure accordingly
+        print('Google sign-in failed');
+      }
+    } catch (error) {
+      print(error);
+      if (error is PlatformException) {
+        // Show error to the user
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("damn")),
+        );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Image.asset(
-                'assets/images/logos/logo_light_mode.png',
+                'assets/images/logos/big_monke.png',
                 height: 150.0,
               ),
               const SizedBox(height: 50.0),
@@ -123,6 +170,12 @@ class _LoginPageState extends State<LoginPage> {
                   userId: _authService.auth.currentUser?.uid ?? '',
                 ),
               ),
+              const SizedBox(height: 20.0), // add some spacing
+
+              ElevatedButton(
+                onPressed: _signInWithGoogle,
+                child: Text('Sign in with Google'),
+              )
             ],
           ),
         ),
