@@ -32,15 +32,19 @@ class _MatchesState extends State<Matches> {
           .fetchMatches(widget.sportsLeague, widget.matchStatus);
       setState(() {});
     } catch (e) {
-      // print('Error fetching matches: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error fetching matches: $e')),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     String leagueName = MatchUtils.getLeagueName(widget.sportsLeague);
-    String title = 'title';
-    String emptyMessage = 'emptyMessage';
+
+    String title = _getTitle(leagueName);
+    String emptyMessage = _getEmptyMessage();
+
     if (widget.matchStatus == 'Not Started') {
       title = 'Scheduled Games for $leagueName';
       emptyMessage = 'No Scheduled Games';
@@ -52,7 +56,8 @@ class _MatchesState extends State<Matches> {
       emptyMessage = 'No Finished Games';
     }
 
-    if (matchesList.isEmpty) {// && widget.matchStatus == 'Live') {
+    if (matchesList.isEmpty) {
+      // && widget.matchStatus == 'Live') {
       // Return an empty Container if there are no live matches
       return Container();
     }
@@ -75,6 +80,32 @@ class _MatchesState extends State<Matches> {
         _buildMatchesWidget(emptyMessage),
       ],
     );
+  }
+
+  String _getTitle(String leagueName) {
+    switch (widget.matchStatus) {
+      case 'Not Started':
+        return 'Scheduled Games for $leagueName';
+      case 'Live':
+        return 'Live Games for $leagueName';
+      case 'Finished':
+        return 'Finished Games for $leagueName';
+      default:
+        return 'title';
+    }
+  }
+
+  String _getEmptyMessage() {
+    switch (widget.matchStatus) {
+      case 'Not Started':
+        return 'No Scheduled Games';
+      case 'Live':
+        return 'No Live Games';
+      case 'Finished':
+        return 'No Finished Games';
+      default:
+        return 'emptyMessage';
+    }
   }
 
   Widget _buildMatchesWidget(String emptyMessage) {

@@ -14,7 +14,7 @@ class MainContentArea extends StatelessWidget {
         // Wrapping with SingleChildScrollView
         child: Column(
           children: [
-            NewsCarousel(),
+            // NewsCarousel(),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -25,10 +25,6 @@ class MainContentArea extends StatelessWidget {
                       matchStatus: "Not Started"),
                   Matches(
                       sportsLeague: SportsLeague.MLB, matchStatus: "Finished"),
-                  // Matches(
-                  //     sportsLeague: SportsLeague.NBA,
-                  //     matchStatus: "Not Started"),
-                  // Matches(sportsLeague: SportsLeague.NBA, matchStatus: "Live"),
                 ],
               ),
             )
