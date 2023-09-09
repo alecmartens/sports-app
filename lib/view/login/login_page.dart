@@ -150,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Image.asset(
-                'assets/images/logos/big_monke.png',
+                'assets/images/logos/logo_trans_light_mode.png',
                 height: 150.0,
               ),
               const SizedBox(height: 50.0),
@@ -172,9 +172,47 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 20.0), // add some spacing
 
-              ElevatedButton(
-                onPressed: _signInWithGoogle,
-                child: Text('Sign in with Google'),
+              Container(
+                constraints: BoxConstraints(
+                    maxWidth:
+                        200.0), // Adjust the maximum width to your preference
+                child: Center(
+                  child: ElevatedButton(
+                    onPressed: _signInWithGoogle,
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          Color.fromARGB(255, 41, 68, 112)),
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                      ),
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      elevation: MaterialStateProperty.all<double>(5.0),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.asset(
+                          'assets/images/logos/google_logo.png',
+                          height: 18.0,
+                        ),
+                        const SizedBox(width: 10),
+                        const Text(
+                          'Sign in with Google',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               )
             ],
           ),

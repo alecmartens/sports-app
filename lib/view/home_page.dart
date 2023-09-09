@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: topAppBar(context),
       body: const MainContentArea(),
-      bottomNavigationBar: const BottomNavBar(),  // Add your bottom navigation bar here
+      // bottomNavigationBar: const BottomNavBar(),  // Add your bottom navigation bar here
     );
   }
 }

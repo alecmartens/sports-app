@@ -12,7 +12,7 @@ class FavoritesPage extends StatelessWidget {
     return Scaffold(
       appBar: topAppBar(context),
       body: const FavoriteTeamsView(),
-      bottomNavigationBar: const BottomNavBar(),
+      // bottomNavigationBar: const BottomNavBar(),
     );
   }
 }

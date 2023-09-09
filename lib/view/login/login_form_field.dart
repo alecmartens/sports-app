@@ -101,22 +101,6 @@ class _LoginFormFieldState extends State<LoginFormField> {
         PasswordInputField(
           onChanged: widget.onPasswordChanged,
         ),
-        // Row(
-        //   children: [
-        // Checkbox(
-        //   value: widget.rememberEmail,
-        //   onChanged: (newValue) {
-        //     if (newValue!) {
-        //       widget.onRememberEmailChanged(true);
-        //       _loadStoredEmail(); // Ensure you reload the email if checkbox is checked
-        //     } else {
-        //       widget.onRememberEmailChanged(false);
-        //     }
-        //   },
-        // ),
-        // const Text("Remember Email")
-        //   ],
-        // ),
         const SizedBox(height: 20.0),
         ElevatedButton(
           onPressed: () {

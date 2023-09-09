@@ -13,8 +13,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _currentIndex = 0; // To keep track of the active tab
 
   final List<Widget> _pages = [
-    HomePage(), // Your main page here
-    FavoritesPage(), // Your favorites page here
+    const HomePage(), // Your main page here
+    const FavoritesPage(), // Your favorites page here
   ];
 
   @override

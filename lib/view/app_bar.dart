@@ -64,23 +64,23 @@ PreferredSizeWidget topAppBar(BuildContext context) {
                 builder: (BuildContext context) => const LoginPage(),
               ));
               break;
-            case 'favorites':
-              // Navigate to the FavoritesPage when "Favorites" is selected.
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => const FavoritesPage(),
-              ));
-              break;
-            // Add more cases for other menu items if needed.
+            // case 'favorites':
+            //   // Navigate to the FavoritesPage when "Favorites" is selected.
+            //   Navigator.of(context).push(MaterialPageRoute(
+            //     builder: (BuildContext context) => const FavoritesPage(),
+            //   ));
+            //   break;
+            // // Add more cases for other menu items if needed.
           }
         },
         itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-          const PopupMenuItem<String>(
-            value: 'favorites',
-            child: ListTile(
-              leading: Icon(Icons.favorite),
-              title: Text('Favorites'),
-            ),
-          ),
+          // const PopupMenuItem<String>(
+          //   value: 'favorites',
+          //   child: ListTile(
+          //     leading: Icon(Icons.favorite),
+          //     title: Text('Favorites'),
+          //   ),
+          // ),
           const PopupMenuItem<String>(
             value: 'logout',
             child: ListTile(

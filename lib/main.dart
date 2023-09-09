@@ -4,11 +4,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'view/root_page.dart';
 import 'themes/app_theme.dart';
-
-
+import 'view/bottom_nav_bar.dart';
+import 'view/app_bar.dart';
 
 Future<void> main() async {
-  //Uncomment this to show widget boundaries 
+  //Uncomment this to show widget boundaries
   // debugPaintSizeEnabled = true;
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -26,7 +26,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Alec\'s Sports App',
       theme: appThemeData,
-      home: const RootPage(),
+      home: const Scaffold(
+        body: RootPage(),
+        bottomNavigationBar:
+            BottomNavBar(), // Add your bottom navigation bar here
+      ), // Add your bottom navigation bar here
     );
   }
 }

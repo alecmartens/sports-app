@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'news_carousel.dart';
 import 'matches/matches.dart'; // Import the LiveMatches component
 import '../enums/sports_league_enum.dart';
 
