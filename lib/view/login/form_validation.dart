@@ -3,7 +3,6 @@ class FormValidation {
     if (value == null || value.isEmpty) {
       return 'Please enter your email';
     }
-    // Additional validation rules for the email can be added here.
     return null;
   }
 

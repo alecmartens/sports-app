@@ -12,7 +12,6 @@ class MatchCard extends StatelessWidget {
   final String startTimeDisplay;
   final String homeScore;
   final String awayScore;
-  // final String currentSegment;
 
   const MatchCard({
     Key? key,
@@ -24,7 +23,6 @@ class MatchCard extends StatelessWidget {
     required this.startTimeDisplay,
     required this.homeScore,
     required this.awayScore,
-    // required this.currentSegment,
   }) : super(key: key);
 
   @override

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// Only if you've separated HomePage into its own file.
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'view/root_page.dart';

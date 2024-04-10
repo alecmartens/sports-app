@@ -23,9 +23,9 @@ class _RootPageState extends State<RootPage> {
           if (user == null) {
             return const LoginPage();
           }
-          return const HomePage();  // Replace with your HomePage widget
+          return const HomePage(); 
         }
-        return const CircularProgressIndicator();  // Return a loading widget while waiting for the stream
+        return const CircularProgressIndicator(); 
       },
     );
   }

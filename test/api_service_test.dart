@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 import 'dart:convert';
 import 'package:sports_app/controller/api_service.dart';
 import 'package:sports_app/enums/sports_league_enum.dart';
-import './mocks.mocks.dart'; // <-- Make sure to adjust the path
+import './mocks.mocks.dart';
 
 void main() {
   group('ApiService', () {
@@ -20,14 +20,14 @@ void main() {
         () async {
       final mockResponse = http.Response(jsonEncode({}), 200);
 
-      when(mockClient.get(any, // will accept any URI
+      when(mockClient.get(any, 
               headers: anyNamed('headers')))
           .thenAnswer((_) async => mockResponse);
 
       final response = await apiService.fetchMatches(SportsLeague.MLB);
 
       expect(response, isNotNull);
-      expect(response.statusCode, 200); // Verify if the status code is 200
+      expect(response.statusCode, 200); 
 
       // Capture the arguments passed to the mocked method
       final capturedArguments =
@@ -40,6 +40,5 @@ void main() {
       expect(uriArg.toString(), contains('api-baseball.p.rapidapi.com'));
     });
 
-    // Add similar tests for other leagues and edge cases if needed
   });
 }

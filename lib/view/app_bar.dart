@@ -10,9 +10,9 @@ PreferredSizeWidget topAppBar(BuildContext context) {
         Image.asset(
           'assets/images/logos/small_monke.png',
           fit: BoxFit.contain,
-          height: 32, // You can adjust the size as needed.
+          height: 32,
         ),
-        const SizedBox(width: 8), // Add a little spacing between logo and title
+        const SizedBox(width: 8), 
         const Text(
           "Alec's Sports",
           style: TextStyle(
@@ -53,7 +53,6 @@ PreferredSizeWidget topAppBar(BuildContext context) {
               title: Text('Log Out'),
             ),
           ),
-          // You can add more items here
         ],
         child: const CircleAvatar(
           backgroundColor: Colors.lightBlue,

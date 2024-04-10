@@ -29,7 +29,6 @@ class _NewsCarouselState extends State<NewsCarousel> {
       future: futureNews,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          // Only consider articles that have images and no image load errors
           final validArticles = snapshot.data!
               .where((article) =>
                   article.urlToImage != null &&
@@ -74,9 +73,9 @@ class _NewsCarouselState extends State<NewsCarousel> {
                                   Widget child,
                                   ImageChunkEvent? loadingProgress) {
                                 if (loadingProgress == null) {
-                                  return child; // Returns the loaded image
+                                  return child; 
                                 }
-                                return const CircularProgressIndicator(); // Returns a loading spinner until the image is loaded
+                                return const CircularProgressIndicator(); 
                               },
                               errorBuilder: (BuildContext context,
                                   Object exception, StackTrace? stackTrace) {
@@ -87,10 +86,10 @@ class _NewsCarouselState extends State<NewsCarousel> {
                                     });
                                   });
                                   return Image.asset(
-                                      'assets/images/placeholder.png'); // Return a placeholder image
+                                      'assets/images/placeholder.png'); 
                                 } else {
                                   article.imageLoadAttempts++;
-                                  return const CircularProgressIndicator(); // Keep showing the loading spinner
+                                  return const CircularProgressIndicator(); 
                                 }
                               },
                             ),

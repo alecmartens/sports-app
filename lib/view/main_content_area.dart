@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'news_carousel.dart';
-import 'matches/matches.dart'; // Import the LiveMatches component
+import 'matches/matches.dart'; 
 import '../enums/sports_league_enum.dart';
 
 class MainContentArea extends StatelessWidget {
@@ -11,7 +11,6 @@ class MainContentArea extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(color: Colors.grey),
       child: const SingleChildScrollView(
-        // Wrapping with SingleChildScrollView
         child: Column(
           children: [
             NewsCarousel(),
